@@ -1,0 +1,5 @@
+$kind: http-request
+name: 'Database Ping'
+method: GET
+url: '{{baseUrl}}/database/ping'
+order: 3000

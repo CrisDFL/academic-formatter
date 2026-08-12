@@ -1,0 +1,6 @@
+$kind: collection
+name: 'Academic Formatter API'
+description: 'Local collection for the academic-formatter project endpoints.'
+variables:
+  - key: baseUrl
+    value: 'http://localhost:3000'

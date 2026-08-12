@@ -12,6 +12,7 @@ export class DatabaseController {
       .from('ping')
       .select('*');
     if (error) return { error: error.message };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return data ?? [];
   }
 }
