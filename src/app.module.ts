@@ -6,6 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
+import { DocumentsModule } from './documents/documents.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
     // No se necesita importar ConfigModule en cada módulo, ya que se ha configurado como global en app.module.ts
     ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
+    DocumentsModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],
