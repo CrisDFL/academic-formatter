@@ -47,15 +47,60 @@ export class DocumentsService {
     return data;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} document`;
+  async findOne(id: string, request: AuthenticatedRequest) {
+    const userId = request.user.id;
+
+    const { data, error } = await this.databaseService
+      .getClient()
+      .from('documents')
+      .select('*')
+      .eq('id', id)
+      .eq('user_id', userId)
+      .single();
+
+    if (error) {
+      throw new Error(`Failed to find document: ${error.message}`);
+    }
+    return data;
   }
 
-  update(id: number, updateDocumentDto: UpdateDocumentDto) {
-    return `This action updates a #${id} document`;
+  async update(
+    id: string,
+    updateDocumentDto: UpdateDocumentDto,
+    request: AuthenticatedRequest,
+  ) {
+    const { title, contentRaw } = updateDocumentDto;
+    const userId = request.user.id;
+
+    const { data, error } = await this.databaseService
+      .getClient()
+      .from('documents')
+      .update({ title, content_raw: contentRaw })
+      .eq('id', id)
+      .eq('user_id', userId)
+      .select()
+      .single();
+
+    if (error) {
+      throw new Error(`Failed to update document: ${error.message}`);
+    }
+    return data;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} document`;
+  async remove(id: string, request: AuthenticatedRequest) {
+    const userId = request.user.id;
+
+    const { data, error } = await this.databaseService
+      .getClient()
+      .from('documents')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', userId);
+
+    if (error) {
+      throw new Error(`Failed to delete document: ${error.message}`);
+    }
+
+    return data;
   }
 }

@@ -20,12 +20,11 @@ type AuthenticatedRequest = Request & {
     id: string;
   };
 };
-
 @Controller('documents')
+@UseGuards(AuthGuard)
 export class DocumentsController {
   constructor(private readonly documentsService: DocumentsService) {}
 
-  @UseGuards(AuthGuard)
   @Post()
   create(
     @Body() createDocumentDto: CreateDocumentDto,
@@ -34,27 +33,27 @@ export class DocumentsController {
     return this.documentsService.create(createDocumentDto, request);
   }
 
-  @UseGuards(AuthGuard)
   @Get()
   findAll(@Req() request: AuthenticatedRequest) {
     return this.documentsService.findAll(request);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.documentsService.findOne(+id);
+  findOne(@Param('id') id: string, @Req() request: AuthenticatedRequest) {
+    return this.documentsService.findOne(id, request);
   }
 
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() updateDocumentDto: UpdateDocumentDto,
+    @Req() request: AuthenticatedRequest,
   ) {
-    return this.documentsService.update(+id, updateDocumentDto);
+    return this.documentsService.update(id, updateDocumentDto, request);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.documentsService.remove(+id);
+  remove(@Param('id') id: string, @Req() request: AuthenticatedRequest) {
+    return this.documentsService.remove(id, request);
   }
 }
