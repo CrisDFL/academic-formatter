@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/documents/:id"
+method: DELETE
+pathVariables:
+  id: ""
+body:
+  type: json
+  content: ""
+order: 4457249644524776

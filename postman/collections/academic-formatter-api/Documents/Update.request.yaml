@@ -1,0 +1,7 @@
+$kind: http-request
+name: Update
+url: "{{baseUrl}}/documents/:id"
+method: PATCH
+pathVariables:
+  id: ""
+order: 4322971198431668

@@ -1,0 +1,9 @@
+name: Academic Formatter - Local
+values:
+  - key: baseUrl
+    value: 'http://localhost:3000'
+  - key: supabaseUrl
+    value: 'https://whyjxnfrjshytoqjkitn.supabase.co'
+  - key: token
+    secret: true
+color: 0

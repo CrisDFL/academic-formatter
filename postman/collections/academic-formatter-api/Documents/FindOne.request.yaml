@@ -1,0 +1,14 @@
+$kind: http-request
+name: FindOne
+url: "{{baseUrl}}/documents/:id"
+method: GET
+pathVariables:
+  id: ""
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3997166245779894

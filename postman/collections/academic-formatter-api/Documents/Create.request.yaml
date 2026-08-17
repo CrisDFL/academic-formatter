@@ -1,0 +1,12 @@
+$kind: http-request
+name: Create
+url: "{{baseUrl}}/documents"
+method: POST
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1787000766532

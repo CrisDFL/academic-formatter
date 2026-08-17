@@ -1,0 +1,12 @@
+$kind: http-request
+name: FindAll
+url: "{{baseUrl}}/documents"
+method: GET
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 3813955310314650

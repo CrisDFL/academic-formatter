@@ -27,6 +27,7 @@ export class DocumentsController {
 
   @Post()
   create(
+    // Acceder al cuerpo de la solicitud y al objeto de solicitud autenticada
     @Body() createDocumentDto: CreateDocumentDto,
     @Req() request: AuthenticatedRequest,
   ) {
@@ -45,9 +46,10 @@ export class DocumentsController {
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    // Acceder al parámetro de ruta, al cuerpo de la solicitud y al objeto de solicitud autenticada
+    @Param('id') id: string, // -> Acceder al parámetro de ruta 'id' (id del documento a actualizar)
     @Body() updateDocumentDto: UpdateDocumentDto,
-    @Req() request: AuthenticatedRequest,
+    @Req() request: AuthenticatedRequest, // -> Acceder al objeto de solicitud autenticada (uuid del usuario)
   ) {
     return this.documentsService.update(id, updateDocumentDto, request);
   }

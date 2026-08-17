@@ -1,0 +1,45 @@
+$kind: http-request
+name: Login
+url: "{{supabaseUrl}}/auth/v1/token?grant_type=password"
+method: POST
+headers:
+  apikey: sb_publishable_BNS8cwWLmDCE16oatXTwlg_TS5o1pmB
+  Content-Type: application/json
+queryParams:
+  grant_type: password
+body:
+  type: json
+  content: "{\r
+
+    \  \"email\": \"cris@gmail.com\",\r
+
+    \  \"password\": \"cris123\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "const response = pm.response.json();\r
+
+      \r
+
+      //Extrae el access_token que devuelve Supabase\r
+
+      const token = response.access_token;\r
+
+      \r
+
+      if (token) {\r
+
+      \    // Guarda el token en el entorno de Postman\r
+
+      \    pm.environment.set(\"token\", token);\r
+
+      \    console.log(\"Token guardado en el entorno de Postman: \" + token);\r
+
+      } else {\r
+
+      \    console.error(\"No se encontro el token\");\r
+
+      }"
+    language: text/javascript
+order: 1787000264944

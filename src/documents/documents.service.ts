@@ -12,6 +12,7 @@ interface AuthenticatedRequest extends Request {
 export class DocumentsService {
   constructor(private databaseService: DatabaseService) {}
 
+  // Método para crear un nuevo documento
   async create(
     createDocumentDto: CreateDocumentDto,
     request: AuthenticatedRequest,
@@ -32,6 +33,7 @@ export class DocumentsService {
     return data;
   }
 
+  // Método para obtener todos los documentos del usuario autenticado
   async findAll(request: AuthenticatedRequest) {
     const userId = request.user.id;
 
@@ -47,6 +49,7 @@ export class DocumentsService {
     return data;
   }
 
+  // Método para obtener un documento específico por su ID y el ID del usuario autenticado
   async findOne(id: string, request: AuthenticatedRequest) {
     const userId = request.user.id;
 
@@ -64,6 +67,7 @@ export class DocumentsService {
     return data;
   }
 
+  // Método para actualizar un documento específico por su ID y el ID del usuario autenticado
   async update(
     id: string,
     updateDocumentDto: UpdateDocumentDto,
@@ -87,6 +91,7 @@ export class DocumentsService {
     return data;
   }
 
+  // Método para eliminar un documento específico por su ID y el ID del usuario autenticado
   async remove(id: string, request: AuthenticatedRequest) {
     const userId = request.user.id;
 
